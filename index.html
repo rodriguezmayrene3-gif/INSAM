@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSAM | Instituto Nacional de Santiago de María</title>
+    <meta name="description" content="Instituto Nacional de Santiago de María. Educación, formación y Desarrollo de Software.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            background: #080b18;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 18px 7%;
+            background: rgba(8, 11, 24, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            color: #00e5ff;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            list-style: none;
+        }
+
+        .menu a {
+            font-size: 11px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #00e5ff;
+        }
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 140px 7% 80px;
+            background: #080b18;
+        }
+
+        .video-fondo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(8, 11, 24, 0.96),
+                rgba(8, 11, 24, 0.75),
+                rgba(8, 11, 24, 0.35)
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            animation: aparecer 1s ease;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            color: #00e5ff;
+            border: 1px solid rgba(0, 229, 255, 0.5);
+            padding: 9px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            background: rgba(0, 229, 255, 0.08);
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 7vw, 80px);
+            line-height: 1.08;
+            font-weight: 900;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span,
+        .software-texto h2 span,
+        .educacion-contenido h2 span,
+        .frase-final span {
+            color: #00e5ff;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #d1d5e3;
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 35px;
+        }
+
+        .boton {
+            display: inline-block;
+            background: #00e5ff;
+            color: #080b18;
+            padding: 14px 25px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 800;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .boton:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.25);
+        }
+
+        section {
+            padding: 100px 7%;
+        }
+
+        .encabezado {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 55px;
+        }
+
+        .encabezado small,
+        .presentacion-texto small,
+        .software-texto > small,
+        .mined-contenido > small {
+            display: block;
+            color: #00e5ff;
+            font-weight: 700;
+            letter-spacing: 3px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .encabezado h2 {
+            font-size: clamp(28px, 4vw, 45px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .encabezado p {
+            color: #aeb6cc;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        /* PRESENTACIÓN */
+
+        .presentacion {
+            background: #0c1020;
+        }
+
+        .presentacion-contenido {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: center;
+            gap: 55px;
+        }
+
+        .presentacion-imagen img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+
+        .presentacion-texto h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.25;
+            margin: 15px 0 25px;
+        }
+
+        .presentacion-texto p {
+            color: #aeb6cc;
+            font-size: 14px;
+            line-height: 2;
+            margin-bottom: 18px;
+        }
+
+        /* INSTITUCIÓN */
+
+        .institucion {
+            background: #080b18;
+        }
+
+        .institucion-contenido {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 35px;
+            align-items: stretch;
+        }
+
+        .institucion-imagen {
+            overflow: hidden;
+            border-radius: 14px;
+            min-height: 350px;
+        }
+
+        .institucion-imagen img {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .institucion-imagen:hover img {
+            transform: scale(1.04);
+        }
+
+        .institucion-texto {
+            padding: 35px;
+            border-radius: 14px;
+            background: #101629;
+            border: 1px solid rgba(0, 229, 255, 0.13);
+        }
+
+        .institucion-texto h3 {
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .institucion-texto p {
+            color: #aeb6cc;
+            font-size: 14px;
+            line-height: 2;
+            margin-bottom: 18px;
+        }
+
+        /* VALORES */
+
+        .pilares {
+            background: #0c1020;
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .tarjeta {
+            padding: 35px 25px;
+            background: #101629;
+            border: 1px solid rgba(0, 229, 255, 0.14);
+            border-radius: 13px;
+            transition: 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-8px);
+            border-color: #00e5ff;
+        }
+
+        .tarjeta .numero {
+            font-size: 32px;
+            font-weight: 900;
+            color: #00e5ff;
+            margin-bottom: 20px;
+        }
+
+        .tarjeta h3 {
+            font-size: 19px;
+            margin-bottom: 15px;
+        }
+
+        .tarjeta p {
+            color: #aeb6cc;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        /* DESARROLLO DE SOFTWARE */
+
+        .software {
+            background: #080b18;
+        }
+
+        .software-contenido {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 35px;
+            align-items: center;
+        }
+
+        .software-texto h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.25;
+            margin-bottom: 25px;
+        }
+
+        .software-texto p {
+            color: #aeb6cc;
+            font-size: 14px;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .lista-software {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .elemento-software {
+            background: #101629;
+            border-left: 3px solid #00e5ff;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .codigo {
+            min-width: 0;
+            background: #101629;
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            border-radius: 13px;
+            padding: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .codigo-superior {
+            display: flex;
+            gap: 7px;
+            margin-bottom: 25px;
+        }
+
+        .punto {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #00e5ff;
+        }
+
+        .punto:nth-child(2) {
+            background: #7583ff;
+        }
+
+        .punto:nth-child(3) {
+            background: #ffffff;
+        }
+
+        .codigo pre {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            color: #b7f8ff;
+            font-size: 13px;
+            line-height: 2.2;
+        }
+
+        /* ESPACIO PARA FOTO DE LA ESPECIALIDAD */
+
+        .software-imagen {
+            grid-column: 1 / -1;
+            width: 100%;
+            max-width: 900px;
+            justify-self: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            background: #101629;
+            margin-top: 20px;
+        }
+
+        .software-imagen img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .software-imagen:hover img {
+            transform: scale(1.03);
+        }
+
+        .software-imagen-texto {
+            padding: 22px 25px;
+        }
+
+        .software-imagen-texto h3 {
+            color: #00e5ff;
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .software-imagen-texto p {
+            color: #aeb6cc;
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* EDUCACIÓN */
+
+        .educacion {
+            background: #0c1020;
+        }
+
+        .educacion-contenido {
+            text-align: center;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .educacion-contenido h2 {
+            font-size: clamp(28px, 4vw, 45px);
+            margin-bottom: 25px;
+        }
+
+        .educacion-contenido p {
+            color: #aeb6cc;
+            font-size: 14px;
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+
+        /* GALERÍA */
+
+        .galeria {
+            background: #080b18;
+        }
+
+        .galeria-contenido {
+            .galeria-contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}        }
+
+        .galeria-item {
+            min-width: 0;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .galeria-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .frase-final {
+            text-align: center;
+            margin-top: 45px;
+            font-size: clamp(20px, 3vw, 30px);
+            font-weight: 800;
+        }
+
+        /* ENLACE OFICIAL DEL MINED */
+
+        .mined {
+            background: #0c1020;
+        }
+
+        .mined-contenido {
+            max-width: 850px;
+            margin: auto;
+            padding: 45px 30px;
+            text-align: center;
+            background: #101629;
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            border-radius: 15px;
+        }
+
+        .mined-contenido h2 {
+            font-size: clamp(26px, 4vw, 40px);
+            margin: 15px 0 20px;
+        }
+
+        .mined-contenido p {
+            color: #aeb6cc;
+            font-size: 14px;
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        /* PIE DE PÁGINA */
+
+        footer {
+            padding: 35px 7%;
+            background: #050711;
+            border-top: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .footer-contenido {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: #00e5ff;
+        }
+
+        footer p {
+            color: #aeb6cc;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* ANIMACIONES */
+
+        .revelar {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .revelar.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* TABLET */
+
+        @media (max-width: 900px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            .menu {
+                gap: 12px;
+            }
+
+            .menu a {
+                font-size: 10px;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .presentacion-contenido,
+            .institucion-contenido,
+            .software-contenido {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .tarjetas {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .software-imagen {
+                grid-column: auto;
+            }
+        }
+
+        /* CELULARES */
+
+        @media (max-width: 600px) {
+            header {
+                padding: 13px 5%;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .menu {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px 13px;
+            }
+
+            .menu a {
+                font-size: 10px;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding: 170px 6% 65px;
+            }
+
+            .etiqueta {
+                font-size: 10px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            section {
+                padding: 65px 6%;
+            }
+
+            .presentacion-imagen img {
+                height: 280px;
+            }
+
+            .institucion-texto {
+                padding: 25px;
+            }
+
+            .tarjetas,
+            .lista-software,
+            .galeria-contenido {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .codigo {
+                padding: 20px;
+            }
+
+            .codigo pre {
+                font-size: 11px;
+            }
+
+            .software-imagen img {
+                height: 240px;
+            }
+
+            .mined-contenido {
+                padding: 30px 20px;
+            }
+
+            .galeria-item {
+                height: 230px;
+            }
+
+            .footer-contenido {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENÚ PRINCIPAL -->
+
+    <header>
+        <nav class="navbar">
+            <a href="#inicio" class="logo">IN<span>SAM</span></a>
+
+            <ul class="menu">
+                <li><a href="#inicio">INICIO</a></li>
+                <li><a href="#presentacion">PRESENTACIÓN</a></li>
+                <li><a href="#institucion">INSTITUCIÓN</a></li>
+                <li><a href="#pilares">VALORES</a></li>
+                <li><a href="#software">ESPECIALIDAD</a></li>
+                <li><a href="#galeria">GALERÍA</a></li>
+                <li><a href="#mined">MINED</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- INICIO -->
+
+    <section class="hero" id="inicio">
+
+        <video class="video-fondo"
+               autoplay muted loop playsinline preload="auto"
+               aria-hidden="true">
+            <source src="video2.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-content">
+            <span class="etiqueta">
+                EDUCACIÓN QUE INSPIRA · ESFUERZO · SUPERACIÓN
+            </span>
+
+            <h1>
+                CONSTRUIMOS<br>
+                UN MEJOR <span>MAÑANA</span>
+            </h1>
+
+            <p style="width: 70%; margin: auto;text-align: justify">
+                En el Instituto Nacional de Santiago de María formamos
+                estudiantes con conocimientos, valores y habilidades
+                para enfrentar nuevos desafíos y construir un futuro
+                lleno de oportunidades.
+            </p>
+
+            <a href="#presentacion" class="boton">
+                CONOCE NUESTRA INSTITUCIÓN ↓
+            </a>
+        </div>
+    </section>
+
+    <!-- PRESENTACIÓN -->
+
+    <section class="presentacion" id="presentacion">
+        <div class="presentacion-contenido revelar">
+
+            <div class="presentacion-imagen">
+                <img src="foto1.jpg"
+                     alt="Estudiantes e instalaciones del INSAM">
+            </div>
+
+            <div class="presentacion-texto">
+                <small>CONOCE NUESTRA HISTORIA</small>
+
+                <h2>EDUCACIÓN PARA CRECER Y SUPERARSE</h2>
+
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    El Instituto Nacional de Santiago de María es un
+                    espacio dedicado a la formación académica y personal
+                    de sus estudiantes. Su comunidad educativa trabaja
+                    para fortalecer los conocimientos y las capacidades
+                    necesarias para la vida.
+                </p>
+
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    A través del aprendizaje, la responsabilidad y la
+                    participación, los estudiantes tienen la oportunidad
+                    de descubrir sus talentos, desarrollar su creatividad
+                    y prepararse para alcanzar sus metas.
+                </p>
+
+                <a href="#institucion" class="boton">DESCUBRE MÁS</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INSTITUCIÓN -->
+
+    <section class="institucion" id="institucion">
+
+        <div class="encabezado revelar">
+            <small>NUESTRA INSTITUCIÓN</small>
+
+            <h2>UN ESPACIO PARA APRENDER Y SUPERARSE</h2>
+
+            <p style="width: 70%; margin: auto;text-align: justify">
+                Cada experiencia educativa representa una oportunidad
+                para adquirir conocimientos, fortalecer valores y
+                construir nuevas metas.
+            </p>
+        </div>
+
+        <div class="institucion-contenido revelar">
+
+            <div class="institucion-imagen">
+                <img src="comunidad.jpeg"
+                     alt="Instalaciones del INSAM">
+            </div>
+
+            <div class="institucion-texto">
+                <h3>Una comunidad que aprende unida</h3>
+
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    La vida estudiantil es una etapa para aprender,
+                    compartir experiencias y descubrir nuevas habilidades.
+                    Las actividades académicas y la convivencia contribuyen
+                    al desarrollo de cada estudiante.
+                </p>
+
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    El respeto, la responsabilidad y la colaboración
+                    ayudan a mantener una comunidad educativa en la que
+                    todos pueden aportar y trabajar por objetivos comunes.
+                </p>
+
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    Ser parte del INSAM significa asumir el compromiso
+                    de aprender cada día y representar con orgullo a
+                    nuestra institución.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- VALORES -->
+
+    <section class="pilares" id="pilares">
+
+        <div class="encabezado revelar">
+            <small>NUESTROS PILARES</small>
+
+            <h2>VALORES QUE NOS IDENTIFICAN</h2>
+
+            <p style="width: 70%; margin: auto;text-align: justify">
+                El aprendizaje se fortalece cuando se combina con valores
+                que ayudan a formar mejores estudiantes y ciudadanos.
+            </p>
+        </div>
+
+        <div class="tarjetas">
+
+            <div class="tarjeta revelar">
+                <div class="numero">01</div>
+                <h3>Excelencia académica</h3>
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    Nos esforzamos por aprender, superar desafíos y
+                    desarrollar nuestras capacidades para alcanzar
+                    mejores resultados.
+                </p>
+            </div>
+
+            <div class="tarjeta revelar">
+                <div class="numero">02</div>
+                <h3>Valores y responsabilidad</h3>
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    El respeto, la honestidad y la responsabilidad
+                    favorecen una convivencia sana y un ambiente
+                    adecuado para aprender.
+                </p>
+            </div>
+
+            <div class="tarjeta revelar">
+                <div class="numero">03</div>
+                <h3>Identidad institucional</h3>
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    Representamos a nuestra institución con orgullo,
+                    participando activamente y contribuyendo al
+                    crecimiento de nuestra comunidad educativa.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ESPECIALIDAD -->
+
+    <section class="software" id="software">
+
+        <div class="software-contenido revelar">
+
+            <div class="software-texto">
+                <small>FORMACIÓN TECNOLÓGICA</small>
+
+                <h2>
+                    DESARROLLO DE <span>SOFTWARE</span>
+                </h2>
+
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    El Desarrollo de Software permite transformar ideas
+                    en soluciones tecnológicas. A través de esta
+                    especialidad, los estudiantes fortalecen el
+                    pensamiento lógico, la creatividad y la capacidad
+                    para resolver problemas.
+                </p>
+
+                <p style="width: 70%; margin: auto;text-align: justify">
+                    Aprender a programar también ayuda a comprender
+                    cómo funcionan las aplicaciones y los sitios web,
+                    desarrollar proyectos y prepararse para nuevas
+                    oportunidades en el mundo tecnológico.
+                </p>
+
+                <div class="lista-software">
+                    <div class="elemento-software">Programación</div>
+                    <div class="elemento-software">Diseño web</div>
+                    <div class="elemento-software">Bases de datos</div>
+                    <div class="elemento-software">Aplicaciones</div>
+                    <div class="elemento-software">Lógica computacional</div>
+                    <div class="elemento-software">Proyectos tecnológicos</div>
+                </div>
+            </div>
+
+            <div class="codigo">
+                <div class="codigo-superior">
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                    <span class="punto"></span>
+                </div>
+
+                <pre><code>// Creando nuevas oportunidades
+
+const especialidad = "Desarrollo de Software";
+
+const habilidades = [
+    "Lógica",
+    "Creatividad",
+    "Innovación"
+];
+
+const objetivo =
+    "Transformar ideas en soluciones";
+
+console.log(objetivo);</code></pre>
+            </div>
+
+            <!-- FOTO DE LA ESPECIALIDAD -->
+
+            <div class="software-imagen">
+                <img src="estudiantes.jpeg"
+                     alt="Estudiantes de la especialidad de Desarrollo de Software">
+
+                <div class="software-imagen-texto">
+                    <h3>Aprendiendo, creando e innovando</h3>
+
+                    <p style="width: 70%; margin: auto;text-align: justify">
+                        La tecnología nos permite convertir nuestras ideas
+                        en proyectos y desarrollar habilidades para el futuro.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EDUCACIÓN -->
+
+    <section class="educacion" id="educacion">
+
+        <div class="educacion-contenido revelar">
+
+            <div class="encabezado">
+                <small>EL VALOR DE APRENDER</small>
+            </div>
+
+            <h2>
+                APRENDER HOY,
+                <span>TRANSFORMAR EL MAÑANA</span>
+            </h2>
+
+            <p style="width: 70%; margin: auto;text-align: justify">
+                La educación abre puertas, fortalece nuestras habilidades
+                y nos permite imaginar nuevas posibilidades. Cada clase,
+                proyecto y experiencia representa un paso hacia nuestras
+                metas personales y profesionales.
+            </p>
+
+            <a href="#galeria" class="boton">
+                CONOCE NUESTRA COMUNIDAD
+            </a>
+
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+
+    <section class="galeria" id="galeria">
+
+        <div class="encabezado revelar">
+            <small>ORGULLO INSAM</small>
+
+            <h2>UNA COMUNIDAD CON FUTURO</h2>
+
+            <p style="width: 70%; margin: auto;text-align: justify">
+                El INSAM es parte de una comunidad que aprende, comparte
+                experiencias y trabaja para construir nuevas oportunidades.
+                Cada estudiante aporta esfuerzo, talento y entusiasmo
+                a la vida institucional.
+            </p>
+        </div>
+
+        <div class="galeria-contenido revelar">
+        <center>
+            <div class="galeria-item">
+                <img src="instituto.jpeg"
+                     alt="Instituto Nacional de Santiago de María">
+            </div>
+        </center>
+            
+
+        </div>
+
+        <div class="frase-final">
+            ¡EL FUTURO COMIENZA CON LO QUE
+            <span>APRENDEMOS HOY!</span>
+        </div>
+
+    </section>
+
+    <!-- ENLACE OFICIAL DEL MINED -->
+
+    <section class="mined" id="mined">
+
+        <div class="mined-contenido revelar">
+
+            <small>INFORMACIÓN EDUCATIVA</small>
+
+            <h2>MINISTERIO DE EDUCACIÓN</h2>
+
+            <p style="width: 70%; margin: auto;text-align: justify">
+                Consulta información, recursos educativos, programas,
+                avisos y servicios del Ministerio de Educación,
+                Ciencia y Tecnología de El Salvador.
+            </p>
+
+            <a href="https://www.mined.gob.sv/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="boton">
+                VISITAR SITIO OFICIAL DEL MINED ↗
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+
+    <footer>
+        <div class="footer-contenido">
+
+            <div>
+                <div class="footer-logo">INSAM · SANTIAGO DE MARÍA</div>
+                
+            </div>
+
+            <p>© 2026 INSAM.</p>
+
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+        const elementos = document.querySelectorAll('.revelar');
+
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach((entrada) => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('visible');
+                    observador.unobserve(entrada.target);
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        elementos.forEach((elemento) => {
+            observador.observe(elemento);
+        });
+
+        const video = document.querySelector('.video-fondo');
+
+        if (video) {
+            video.play().catch(() => {
+                // El navegador puede requerir iniciar la reproducción manualmente.
+            });
+        }
+    </script>
+
+</body>
+</html>
